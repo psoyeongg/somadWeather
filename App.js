@@ -47,51 +47,60 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.city}>
-        <Text style={styles.cityName}>{city}</Text>
-      </View>
-      <ScrollView
-        contentContainerStyle={styles.weather}
-        horizontal
-        pagingEnabled
-        // indicatorStyle="white"
-        showsHorizontalScrollIndicator={false}
-      >
-        {days.length === 0 ? (
-          <View style={styles.day}>
-            <ActivityIndicator
-              color="white"
-              size="large"
-              style={{ marginTop: 10 }}
-            />
+      {ok === true ? (
+        <>
+          <View style={styles.city}>
+            <Text style={styles.cityName}>{city}</Text>
           </View>
-        ) : (
-          days.map((day, index) => (
-            <View key={index} style={styles.day}>
-              <Text style={styles.temp}>
-                {`${parseFloat(day.temp.day).toFixed(1)}˚`}
-              </Text>
-              <Text style={styles.description}>{day.weather[0].main}</Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                }}
-              >
-                <Image
-                  style={styles.tinyLogo}
-                  source={{
-                    uri: `http://openweathermap.org/img/wn/${day.weather[0].icon}.png`,
-                  }}
+          <ScrollView
+            contentContainerStyle={styles.weather}
+            horizontal
+            pagingEnabled
+            // indicatorStyle="white"
+            showsHorizontalScrollIndicator={false}
+          >
+            {days.length === 0 ? (
+              <View style={styles.day}>
+                <ActivityIndicator
+                  color="white"
+                  size="large"
+                  style={{ marginTop: 10 }}
                 />
-                <Text style={styles.tinyText}>
-                  {day.weather[0].description}
-                </Text>
               </View>
-            </View>
-          ))
-        )}
-      </ScrollView>
+            ) : (
+              days.map((day, index) => (
+                <View key={index} style={styles.day}>
+                  <Text style={styles.temp}>
+                    {`${parseFloat(day.temp.day).toFixed(1)}˚`}
+                  </Text>
+                  <Text style={styles.description}>{day.weather[0].main}</Text>
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Image
+                      style={styles.tinyLogo}
+                      source={{
+                        uri: `http://openweathermap.org/img/wn/${day.weather[0].icon}.png`,
+                      }}
+                    />
+                    <Text style={styles.tinyText}>
+                      {day.weather[0].description}
+                    </Text>
+                  </View>
+                </View>
+              ))
+            )}
+          </ScrollView>
+        </>
+      ) : (
+        <View style={styles.city}>
+          <Text style={styles.cityName}>😱😱😰😰</Text>
+          <Text style={styles.cityName}>No permission</Text>
+        </View>
+      )}
     </View>
   );
 }
@@ -107,23 +116,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   cityName: {
-    fontSize: 68,
+    fontSize: 70,
     fontWeight: "600",
     color: "white",
   },
   weather: {},
   day: {
     width: SCREEN_WIDTH,
-    alignItems: "center",
+    marginLeft: 20,
+    // alignItems: "center",
   },
   temp: {
     marginTop: 50,
-    fontSize: 168,
+    fontSize: 150,
     color: "white",
   },
   description: {
-    marginTop: -30,
-    fontSize: 60,
+    marginTop: -10,
+    fontSize: 40,
     color: "white",
   },
   tinyText: {
