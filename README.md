@@ -1,4 +1,3 @@
-# somadWeather
 
 # React Native로 날씨 앱 만들기
 [공부한 내용 - Notion](https://www.notion.so/React-Native-c08dd7ad85c048508727da737819ee14)
